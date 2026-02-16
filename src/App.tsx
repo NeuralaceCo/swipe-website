@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import TermsOfService from './pages/TermsOfService'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import appScreenshot from './assets/app-screenshot.png'
 import './App.css'
 
 const fadeUp = {
@@ -28,90 +29,12 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.12 } },
 }
 
-function PhoneMockup({ variant = 'hero' }: { variant?: 'hero' | 'feature' }) {
+function PhoneMockup() {
   return (
-    <div className={`phone-mockup ${variant}`}>
+    <div className="phone-mockup">
       <div className="phone-frame">
-        <div className="phone-notch" />
         <div className="phone-screen">
-          {/* Status bar */}
-          <div className="phone-status-bar">
-            <span className="phone-time">9:41</span>
-            <div className="phone-status-icons">
-              <div className="status-dot" />
-              <div className="status-dot" />
-              <div className="status-dot" />
-            </div>
-          </div>
-
-          {/* App header */}
-          <div className="phone-app-header">
-            <div className="app-logo-small">
-              <div className="logo-icon-small">
-                <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clipPath="url(#clip0_phone)">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M27.3654 12.8846C27.3654 12.8846 27.383 12.9198 27.3888 12.9433V12.7848C27.383 12.82 27.3771 12.8494 27.3654 12.8846ZM22.6106 0H4.77828C2.14058 0 0 2.14743 0 4.79358V14.0111L1.97097 6.34255C2.52658 4.18338 4.4683 2.7459 6.59718 2.7459C6.98904 2.7459 7.39259 2.79283 7.79614 2.89845L25.0611 7.36346C25.991 7.60402 26.7864 8.10274 27.3888 8.76574V4.79358C27.3888 2.14743 25.2483 0 22.6106 0ZM27.2894 17.8835L27.0145 16.5986L26.7455 15.3137L26.418 13.7823C26.0612 12.1218 24.5815 10.919 22.8913 10.919C22.6398 10.919 22.3825 10.9484 22.1368 11.0012L4.6964 14.7328C3.75478 14.9323 2.94768 15.4897 2.42131 16.3052C1.89494 17.1149 1.71948 18.083 1.91833 19.0277L3.6846 27.3475C4.03551 27.4296 4.40397 27.4766 4.77828 27.4766H22.6106C22.9673 27.4766 23.3124 27.4355 23.6458 27.3592C23.868 27.3123 24.0844 27.2477 24.2949 27.1656C24.5347 27.0776 24.7628 26.972 24.9851 26.8429C26.418 26.0156 27.3888 24.4608 27.3888 22.683V18.347L27.2894 17.8835Z" fill="#1CD434"/>
-                    <path d="M27.3888 11.218C27.307 10.8542 27.1666 10.4963 26.9736 10.1677C26.4823 9.33455 25.6986 8.74196 24.7687 8.5014L7.50371 4.03638C7.20543 3.96011 6.90131 3.91904 6.59718 3.91904C4.95373 3.91904 3.51499 5.03382 3.10559 6.6356L0 18.7222V22.6827C0 24.4546 0.959165 26.0036 2.38621 26.8308L0.777859 19.2738C0.222246 16.6804 1.87154 14.134 4.45076 13.5825L21.8912 9.85088C22.2246 9.78047 22.5638 9.74527 22.8913 9.74527C24.8739 9.74527 26.6753 10.995 27.3654 12.8843C27.3771 12.9019 27.383 12.9195 27.3888 12.9429V12.7845C27.5058 12.2623 27.5058 11.7284 27.3888 11.218Z" fill="#FBBC04"/>
-                    <path fillRule="evenodd" clipRule="evenodd" d="M27.3909 18.3468V22.6828C27.3909 24.4606 26.42 26.0154 24.9871 26.8427C24.7649 26.9718 24.5368 27.0774 24.297 27.1654C24.0864 27.2475 23.87 27.3121 23.6478 27.359C23.3144 27.4353 22.9694 27.4764 22.6126 27.4764H4.78032C4.40601 27.4764 4.03755 27.4294 3.68664 27.3473L1.92037 19.0275C1.72152 18.0828 1.89698 17.1147 2.42335 16.305C2.94972 15.4895 3.75682 14.9321 4.69844 14.7326L22.1389 11.001C22.3845 10.9482 22.6418 10.9188 22.8933 10.9188C24.5836 10.9188 26.0633 12.1216 26.42 13.7821L26.7475 15.3135L27.0166 16.5984L27.2915 17.8833L27.3909 18.3468Z" fill="#1CD434"/>
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_phone">
-                      <rect width="27.4766" height="27.4766" fill="white"/>
-                    </clipPath>
-                  </defs>
-                </svg>
-              </div>
-              <span>12</span>
-            </div>
-            <div className="header-icons">
-              <div className="header-icon-dot" />
-              <div className="header-icon-dot" />
-            </div>
-          </div>
-
-          {/* Notification card */}
-          <div className="notification-card">
-            <div className="notif-header">
-              <div className="notif-avatar">A</div>
-              <div className="notif-meta">
-                <div className="notif-title">Check availability for call</div>
-                <div className="notif-subtitle">from: Anant</div>
-              </div>
-            </div>
-            <div className="notif-body">
-              Hey Anant,<br />
-              Are you free for a quick call for the next upcoming project today at 2 PM?
-            </div>
-            <div className="notif-show-more">Show more</div>
-          </div>
-
-          {/* AI Response */}
-          <div className="ai-response">
-            <div className="ai-badge">
-              <Sparkles size={12} />
-              <span>AI Response</span>
-            </div>
-            <div className="ai-text">
-              Yes, I'm available for a call at 2pm today, that works perfectly for me.
-            </div>
-            <div className="ai-text-secondary">
-              Feel free to send over a calendar invite or let me know if you'd prefer a different time.
-            </div>
-          </div>
-
-          {/* Reply button */}
-          <div className="phone-reply-btn">
-            <Zap size={14} />
-            <span>Reply with Agent</span>
-          </div>
-
-          {/* Bottom nav */}
-          <div className="phone-bottom-nav">
-            <div className="nav-dot active" />
-            <div className="nav-dot" />
-            <div className="nav-dot" />
-            <div className="nav-dot" />
-          </div>
+          <img src={appScreenshot} alt="Swipe app" className="phone-screenshot" />
         </div>
       </div>
     </div>
@@ -324,7 +247,7 @@ function LandingPage() {
             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           >
             <div className="phone-glow" />
-            <PhoneMockup variant="hero" />
+            <PhoneMockup />
 
             {/* Floating integration icons */}
             <motion.div
