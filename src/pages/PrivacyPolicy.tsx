@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { SwipeLogo } from '../App'
-import { ChevronRight } from 'lucide-react'
 
 export default function PrivacyPolicy() {
   useEffect(() => {
@@ -13,15 +12,6 @@ export default function PrivacyPolicy() {
       <nav className="navbar">
         <div className="nav-container">
           <Link to="/"><SwipeLogo /></Link>
-          <div className="nav-links">
-            <Link to="/#features">Features</Link>
-            <Link to="/#how-it-works">How it Works</Link>
-            <Link to="/#testimonials">Reviews</Link>
-          </div>
-          <Link to="/#download" className="nav-cta">
-            Get Early Access
-            <ChevronRight size={16} />
-          </Link>
         </div>
       </nav>
 
@@ -228,33 +218,12 @@ export default function PrivacyPolicy() {
 
       <footer className="footer">
         <div className="footer-container">
-          <div className="footer-top">
-            <div className="footer-brand">
-              <Link to="/"><SwipeLogo size="small" /></Link>
-              <p className="footer-tagline">All your apps. One swipe.</p>
-            </div>
-            <div className="footer-links">
-              <div className="footer-col">
-                <h4>Product</h4>
-                <Link to="/#features">Features</Link>
-                <Link to="/#how-it-works">How it Works</Link>
-                <Link to="/#download">Download</Link>
-              </div>
-              <div className="footer-col">
-                <h4>Company</h4>
-                <a href="#">About</a>
-                <a href="#">Blog</a>
-                <a href="#">Careers</a>
-              </div>
-              <div className="footer-col">
-                <h4>Legal</h4>
-                <Link to="/privacy">Privacy</Link>
-                <Link to="/tos">Terms</Link>
-              </div>
-            </div>
-          </div>
           <div className="footer-bottom">
-            <p>&copy; 2026 Swipe. All rights reserved.</p>
+            <p>&copy; 2026 Neuralace Inc. All rights reserved.</p>
+            <div className="footer-legal-links">
+              <Link to="/privacy">Privacy</Link>
+              <Link to="/tos">Terms</Link>
+            </div>
           </div>
         </div>
       </footer>

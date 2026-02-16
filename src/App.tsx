@@ -1,20 +1,5 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Routes, Route, Link } from 'react-router-dom'
-import {
-  Mail,
-  MessageSquare,
-  Bell,
-  Zap,
-  ArrowRight,
-  ChevronRight,
-  Sparkles,
-  SwatchBook,
-  Globe,
-  Shield,
-  Star,
-  Check,
-} from 'lucide-react'
 import TermsOfService from './pages/TermsOfService'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import appScreenshot from './assets/app-screenshot.png'
@@ -26,22 +11,18 @@ const fadeUp = {
 }
 
 const stagger = {
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.15 } },
 }
 
 function PhoneMockup() {
   return (
     <div className="phone-mockup">
-      <div className="phone-frame">
-        <div className="phone-screen">
-          <img src={appScreenshot} alt="Swipe app" className="phone-screenshot" />
-        </div>
-      </div>
+      <img src={appScreenshot} alt="Swipe app" className="phone-screenshot" />
     </div>
   )
 }
 
-function SwipeLogo({ size = 'default' }: { size?: 'default' | 'small' }) {
+export function SwipeLogo({ size = 'default' }: { size?: 'default' | 'small' }) {
   return (
     <div className={`swipe-logo ${size}`}>
       <div className="logo-icon">
@@ -69,116 +50,9 @@ function SwipeLogo({ size = 'default' }: { size?: 'default' | 'small' }) {
 }
 
 function LandingPage() {
-  const heroRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  })
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150])
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
-
-  const features = [
-    {
-      icon: <Globe size={28} />,
-      title: 'All Apps Connected',
-      description:
-        'Connect Gmail, Slack, Notion, Calendar & more. One unified inbox for everything.',
-    },
-    {
-      icon: <Zap size={28} />,
-      title: 'Reply in One Swipe',
-      description:
-        'Swipe right to accept, left to dismiss, down to edit. Handle notifications at lightning speed.',
-    },
-    {
-      icon: <Sparkles size={28} />,
-      title: 'AI-Powered Responses',
-      description:
-        'Get smart, context-aware reply suggestions powered by AI. Customize and send in seconds.',
-    },
-  ]
-
-  const steps = [
-    {
-      number: '01',
-      title: 'Connect Your Apps',
-      description:
-        'Link Gmail, Slack, Notion, Google Calendar, Drive and more in under a minute.',
-      icon: <SwatchBook size={24} />,
-    },
-    {
-      number: '02',
-      title: 'Swipe Through Cards',
-      description:
-        'Every notification becomes a card. Swipe to take action instantly without opening each app.',
-      icon: <MessageSquare size={24} />,
-    },
-    {
-      number: '03',
-      title: 'Let AI Handle the Rest',
-      description:
-        'AI drafts responses, schedules meetings, and manages your notifications automatically.',
-      icon: <Sparkles size={24} />,
-    },
-  ]
-
-  const integrations = [
-    { name: 'Gmail', icon: <Mail size={24} /> },
-    { name: 'Slack', icon: <MessageSquare size={24} /> },
-    { name: 'Notion', icon: <SwatchBook size={24} /> },
-    { name: 'Calendar', icon: <Bell size={24} /> },
-    { name: 'Drive', icon: <Globe size={24} /> },
-  ]
-
-  const testimonials = [
-    {
-      name: 'Sarah Chen',
-      role: 'Product Manager',
-      avatar: 'SC',
-      text: "I used to spend 45 minutes every morning just catching up on notifications. Now it takes me 5 minutes with Swipe.",
-      stars: 5,
-    },
-    {
-      name: 'Marcus Rodriguez',
-      role: 'Software Engineer',
-      avatar: 'MR',
-      text: "The AI responses are surprisingly good. It feels like having a personal assistant that actually understands context.",
-      stars: 5,
-    },
-    {
-      name: 'Priya Patel',
-      role: 'Startup Founder',
-      avatar: 'PP',
-      text: "Connecting all my apps into one swipeable feed was a game changer. I can't imagine going back.",
-      stars: 5,
-    },
-  ]
-
   return (
     <div className="app">
-      {/* ========== NAVBAR ========== */}
-      <motion.nav
-        className="navbar"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
-        <div className="nav-container">
-          <SwipeLogo />
-          <div className="nav-links">
-            <a href="#features">Features</a>
-            <a href="#how-it-works">How it Works</a>
-            <a href="#testimonials">Reviews</a>
-          </div>
-          <a href="#download" className="nav-cta">
-            Get Early Access
-            <ChevronRight size={16} />
-          </a>
-        </div>
-      </motion.nav>
-
-      {/* ========== HERO ========== */}
-      <section className="hero" ref={heroRef}>
+      <section className="hero">
         <div className="hero-bg">
           <div className="hero-gradient-orb orb-1" />
           <div className="hero-gradient-orb orb-2" />
@@ -188,17 +62,13 @@ function LandingPage() {
 
         <motion.div
           className="hero-container"
-          style={{ y: heroY, opacity: heroOpacity }}
+          initial="hidden"
+          animate="visible"
+          variants={stagger}
         >
-          <motion.div
-            className="hero-content"
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-          >
-            <motion.div className="hero-badge" variants={fadeUp}>
-              <Sparkles size={14} />
-              <span>AI-Powered Notification Hub</span>
+          <motion.div className="hero-content" variants={stagger}>
+            <motion.div variants={fadeUp}>
+              <SwipeLogo size="default" />
             </motion.div>
 
             <motion.h1 className="hero-title" variants={fadeUp}>
@@ -212,31 +82,8 @@ function LandingPage() {
               Reply to anything with a single swipe.
             </motion.p>
 
-            <motion.div className="hero-actions" variants={fadeUp}>
-              <a href="#download" className="btn btn-primary btn-lg">
-                <span>Get Early Access</span>
-                <ArrowRight size={18} />
-              </a>
-              <a href="#how-it-works" className="btn btn-ghost btn-lg">
-                See How it Works
-              </a>
-            </motion.div>
-
-            <motion.div className="hero-stats" variants={fadeUp}>
-              <div className="stat">
-                <span className="stat-value">10k+</span>
-                <span className="stat-label">Waitlist</span>
-              </div>
-              <div className="stat-divider" />
-              <div className="stat">
-                <span className="stat-value">50k+</span>
-                <span className="stat-label">Swipes Daily</span>
-              </div>
-              <div className="stat-divider" />
-              <div className="stat">
-                <span className="stat-value">4.9</span>
-                <span className="stat-label">Rating</span>
-              </div>
+            <motion.div className="coming-soon-badge" variants={fadeUp}>
+              Coming Soon
             </motion.div>
           </motion.div>
 
@@ -248,286 +95,18 @@ function LandingPage() {
           >
             <div className="phone-glow" />
             <PhoneMockup />
-
-            {/* Floating integration icons */}
-            <motion.div
-              className="floating-icon fi-1"
-              animate={{ y: [-8, 8, -8] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <Mail size={20} />
-            </motion.div>
-            <motion.div
-              className="floating-icon fi-2"
-              animate={{ y: [8, -8, 8] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <MessageSquare size={20} />
-            </motion.div>
-            <motion.div
-              className="floating-icon fi-3"
-              animate={{ y: [-6, 10, -6] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <Bell size={20} />
-            </motion.div>
-            <motion.div
-              className="floating-icon fi-4"
-              animate={{ y: [6, -10, 6] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <Sparkles size={20} />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-
-        <div className="hero-fade-bottom" />
-      </section>
-
-      {/* ========== INTEGRATIONS ========== */}
-      <section className="integrations">
-        <motion.div
-          className="integrations-container"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={stagger}
-        >
-          <motion.p className="integrations-label" variants={fadeUp}>
-            Works seamlessly with your favorite apps
-          </motion.p>
-          <motion.div className="integrations-grid" variants={fadeUp}>
-            {integrations.map((app) => (
-              <div key={app.name} className="integration-item">
-                <div className="integration-icon">{app.icon}</div>
-                <span>{app.name}</span>
-              </div>
-            ))}
           </motion.div>
         </motion.div>
       </section>
 
-      {/* ========== FEATURES ========== */}
-      <section className="features" id="features">
-        <motion.div
-          className="features-container"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          variants={stagger}
-        >
-          <motion.div className="section-header" variants={fadeUp}>
-            <div className="section-badge">
-              <Zap size={14} />
-              <span>Features</span>
-            </div>
-            <h2 className="section-title">
-              Everything you need.
-              <br />
-              <span className="gradient-text">Nothing you don't.</span>
-            </h2>
-            <p className="section-subtitle">
-              Swipe brings all your notifications into one beautiful, AI-powered
-              feed. No more app-switching chaos.
-            </p>
-          </motion.div>
-
-          <div className="features-grid">
-            {features.map((feature, i) => (
-              <motion.div
-                key={i}
-                className="feature-card"
-                variants={fadeUp}
-                whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              >
-                <div className="feature-icon">{feature.icon}</div>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
-                <div className="feature-link">
-                  Learn more <ArrowRight size={14} />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ========== HOW IT WORKS ========== */}
-      <section className="how-it-works" id="how-it-works">
-        <div className="how-bg">
-          <div className="how-gradient-orb" />
-        </div>
-        <motion.div
-          className="how-container"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          variants={stagger}
-        >
-          <motion.div className="section-header" variants={fadeUp}>
-            <div className="section-badge light">
-              <Shield size={14} />
-              <span>How it Works</span>
-            </div>
-            <h2 className="section-title light">
-              Three steps to
-              <br />
-              <span className="gradient-text">notification nirvana.</span>
-            </h2>
-          </motion.div>
-
-          <div className="steps-grid">
-            {steps.map((step, i) => (
-              <motion.div key={i} className="step-card" variants={fadeUp}>
-                <div className="step-number">{step.number}</div>
-                <div className="step-icon">{step.icon}</div>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Swipe gesture demo */}
-          <motion.div className="swipe-demo" variants={fadeUp}>
-            <div className="swipe-card-demo">
-              <div className="swipe-card-content">
-                <div className="swipe-card-avatar">A</div>
-                <div>
-                  <div className="swipe-card-title">Meeting Reminder</div>
-                  <div className="swipe-card-text">
-                    Team standup in 15 minutes
-                  </div>
-                </div>
-              </div>
-              <div className="swipe-indicators">
-                <div className="swipe-indicator left">
-                  <span>Dismiss</span>
-                </div>
-                <div className="swipe-indicator right">
-                  <Check size={16} />
-                  <span>Accept</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ========== TESTIMONIALS ========== */}
-      <section className="testimonials" id="testimonials">
-        <motion.div
-          className="testimonials-container"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          variants={stagger}
-        >
-          <motion.div className="section-header" variants={fadeUp}>
-            <div className="section-badge">
-              <Star size={14} />
-              <span>Testimonials</span>
-            </div>
-            <h2 className="section-title">
-              Loved by people who
-              <br />
-              <span className="gradient-text">hate notifications.</span>
-            </h2>
-          </motion.div>
-
-          <div className="testimonials-grid">
-            {testimonials.map((t, i) => (
-              <motion.div key={i} className="testimonial-card" variants={fadeUp}>
-                <div className="testimonial-stars">
-                  {Array.from({ length: t.stars }).map((_, j) => (
-                    <Star key={j} size={16} fill="var(--green-500)" stroke="none" />
-                  ))}
-                </div>
-                <p className="testimonial-text">"{t.text}"</p>
-                <div className="testimonial-author">
-                  <div className="testimonial-avatar">{t.avatar}</div>
-                  <div>
-                    <div className="testimonial-name">{t.name}</div>
-                    <div className="testimonial-role">{t.role}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ========== CTA ========== */}
-      <section className="cta" id="download">
-        <div className="cta-bg">
-          <div className="cta-orb cta-orb-1" />
-          <div className="cta-orb cta-orb-2" />
-        </div>
-        <motion.div
-          className="cta-container"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          variants={stagger}
-        >
-          <motion.div className="cta-content" variants={fadeUp}>
-            <h2 className="cta-title">
-              Ready to take back
-              <br />
-              your notifications?
-            </h2>
-            <p className="cta-subtitle">
-              Join 10,000+ people on the waitlist. Be the first to experience
-              the future of notification management.
-            </p>
-            <div className="cta-form">
-              <div className="cta-input-wrap">
-                <Mail size={18} />
-                <input type="email" placeholder="Enter your email" />
-              </div>
-              <button className="btn btn-primary btn-lg cta-btn">
-                <span>Join Waitlist</span>
-                <ArrowRight size={18} />
-              </button>
-            </div>
-            <p className="cta-disclaimer">
-              Free early access. No spam, ever.
-            </p>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ========== FOOTER ========== */}
       <footer className="footer">
         <div className="footer-container">
-          <div className="footer-top">
-            <div className="footer-brand">
-              <SwipeLogo size="small" />
-              <p className="footer-tagline">
-                All your apps. One swipe.
-              </p>
-            </div>
-            <div className="footer-links">
-              <div className="footer-col">
-                <h4>Product</h4>
-                <a href="#features">Features</a>
-                <a href="#how-it-works">How it Works</a>
-                <a href="#download">Download</a>
-              </div>
-              <div className="footer-col">
-                <h4>Company</h4>
-                <a href="#">About</a>
-                <a href="#">Blog</a>
-                <a href="#">Careers</a>
-              </div>
-              <div className="footer-col">
-                <h4>Legal</h4>
-                <Link to="/privacy">Privacy</Link>
-                <Link to="/tos">Terms</Link>
-              </div>
-            </div>
-          </div>
           <div className="footer-bottom">
-            <p>&copy; 2026 Swipe. All rights reserved.</p>
+            <p>&copy; 2026 Neuralace Inc. All rights reserved.</p>
+            <div className="footer-legal-links">
+              <Link to="/privacy">Privacy</Link>
+              <Link to="/tos">Terms</Link>
+            </div>
           </div>
         </div>
       </footer>
@@ -545,5 +124,4 @@ function App() {
   )
 }
 
-export { SwipeLogo }
 export default App
