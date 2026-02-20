@@ -2,6 +2,9 @@ import { motion } from 'framer-motion'
 import { Routes, Route, Link } from 'react-router-dom'
 import TermsOfService from './pages/TermsOfService'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import Login from './pages/Login'
+import ConnectGmail from './pages/ConnectGmail'
+import GmailConnected from './pages/GmailConnected'
 import appScreenshot from './assets/app-screenshot.png'
 import './App.css'
 
@@ -120,6 +123,9 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/tos" element={<TermsOfService />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/connect-gmail" element={<ConnectGmail />} />
+      <Route path="/gmail-connected" element={<GmailConnected />} />
     </Routes>
   )
 }
